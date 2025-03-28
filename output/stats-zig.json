@@ -1,0 +1,50 @@
+[
+  {
+    "file": "comparison.md",
+    "words": 1851,
+    "headings": 48,
+    "links": 8,
+    "reading_time_min": 10,
+    "readability_score": 81.5
+  },
+  {
+    "file": "article.md",
+    "words": 145,
+    "headings": 8,
+    "links": 1,
+    "reading_time_min": 1,
+    "readability_score": 71.0
+  },
+  {
+    "file": "README.md",
+    "words": 334,
+    "headings": 13,
+    "links": 0,
+    "reading_time_min": 2,
+    "readability_score": 77.7
+  },
+  {
+    "file": "tutorial.md",
+    "words": 156,
+    "headings": 11,
+    "links": 3,
+    "reading_time_min": 1,
+    "readability_score": 76.0
+  },
+  {
+    "file": "notes.md",
+    "words": 70,
+    "headings": 8,
+    "links": 6,
+    "reading_time_min": 1,
+    "readability_score": 88.3
+  },
+  {
+    "file": "test.md",
+    "words": 0,
+    "headings": 0,
+    "links": 0,
+    "reading_time_min": 0,
+    "readability_score": 100.0
+  }
+]
