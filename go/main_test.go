@@ -159,12 +159,12 @@ func TestCalculateReadabilityScore(t *testing.T) {
 		{
 			name:     "Testo semplice",
 			input:    "Questa è una frase. Questa è un'altra frase.",
-			expected: 94,
+			expected: 93,
 		},
 		{
 			name:     "Testo complesso",
 			input:    "Questa è una frase molto lunga con molte parole che dovrebbe abbassare il punteggio di leggibilità. Questa è un'altra frase lunga.",
-			expected: 85.333333,
+			expected: 80,
 		},
 	}
 

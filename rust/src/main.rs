@@ -48,11 +48,11 @@ fn main() {
         }
     }
 
-    create_dir_all("output").expect("Could not create output folder");
-    let mut file = File::create("output/stats-rust.json").expect("Failed to create JSON file");
+    create_dir_all("../output").expect("Could not create output folder");
+    let mut file = File::create("../output/stats-rust.json").expect("Failed to create JSON file");
     let json = to_string_pretty(&results).expect("Failed to serialize JSON");
     file.write_all(json.as_bytes())
         .expect("Failed to write JSON");
 
-    println!("✅ Analysis complete. Results saved to output/stats-rust.json");
+    println!("✅ Analysis complete. Results saved to ../output/stats-rust.json");
 }

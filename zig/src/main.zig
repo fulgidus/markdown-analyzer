@@ -22,14 +22,14 @@ fn saveStatsToJson(allocator: std.mem.Allocator, stats: []const analyzer.FileSta
     try string.appendSlice("\n]\n");
 
     // Crea la directory di output se non esiste
-    fs.cwd().makeDir("output") catch |err| {
+    fs.cwd().makeDir("../output") catch |err| {
         if (err != error.PathAlreadyExists) {
             return err;
         }
     };
 
     // Salva il file JSON
-    const file = try fs.cwd().createFile("output/stats-zig.json", .{});
+    const file = try fs.cwd().createFile("../output/stats-zig.json", .{});
     defer file.close();
 
     try file.writeAll(string.items);

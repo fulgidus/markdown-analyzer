@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"unicode"
+	/* "unicode" */
 )
 
 type Stats struct {
@@ -85,12 +85,20 @@ func processFile(filePath string) (Stats, error) {
 	}, nil
 }
 
-func countWords(text string) int {
+/* func countWords(text string) int {
 	words := strings.FieldsFunc(text, func(r rune) bool {
 		return !unicode.IsLetter(r) && !unicode.IsNumber(r)
 	})
 	return len(words)
+} */
+ func countWords(text string) int {
+	words := strings.FieldsFunc(text, func(r rune) bool {
+		// Caratteri ASCII alfanumerici, esattamente come Rust/Zig
+		return !(('a' <= r && r <= 'z') || ('A' <= r && r <= 'Z') || ('0' <= r && r <= '9'))
+	})
+	return len(words)
 }
+
 
 func countHeadings(lines []string) int {
 	count := 0
@@ -116,15 +124,23 @@ func calculateReadingTime(words int) int {
 }
 
 func calculateReadabilityScore(text string) float64 {
-	// Implementazione semplificata del punteggio di leggibilità
-	// Basata sul numero medio di parole per frase
-	sentences := strings.Split(text, ".")
-	words := countWords(text)
-	if len(sentences) == 0 {
-		return 0
-	}
-	avgWordsPerSentence := float64(words) / float64(len(sentences))
-	return 100 - (avgWordsPerSentence * 2)
+    sentenceCount := strings.Count(text, ".")
+    if sentenceCount == 0 {
+        sentenceCount = 1
+    }
+
+    words := countWords(text)
+    avgWordsPerSentence := float64(words) / float64(sentenceCount)
+    readability := 100 - (avgWordsPerSentence * 2)
+
+    // Normalizza tra 0 e 100
+    if readability < 0 {
+        readability = 0
+    } else if readability > 100 {
+        readability = 100
+    }
+
+    return readability
 }
 
 func main() {

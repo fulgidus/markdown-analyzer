@@ -99,16 +99,22 @@ markdown-analyzer/
 
 The project includes several convenience scripts:
 
+#### Run all implementations sequentially
 ```bash
-# Run all implementations sequentially
 ./run-all.sh input/
-
-# Run all tests
+```
+#### Run all tests
+```bash
 ./run-tests.sh
-
-# Run a specific implementation
+```
+#### Run a specific implementation
+```bash
 ./run-rust.sh input/
+```
+```bash
 ./run-go.sh input/
+```
+```bash
 ./run-zig.sh input/
 ```
 

@@ -45,6 +45,8 @@ def compare_stats(stats1: Dict[str, Dict], stats2: Dict[str, Dict], name1: str, 
             print(f"\n📄 {file}")
             for diff in differences:
                 print(f"  • {diff}")
+        else:
+            print(f"\n📄 {file} - No difference detected.")
 
 def main():
     output_dir = Path("output")
