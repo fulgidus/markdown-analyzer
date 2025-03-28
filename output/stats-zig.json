@@ -1,50 +1,50 @@
 [
   {
-    "file": "comparison.md",
-    "words": 1851,
+    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/comparison.md",
+    "words": 2281,
     "headings": 48,
     "links": 8,
-    "reading_time_min": 10,
-    "readability_score": 81.5
+    "reading_time_min": 12,
+    "readability_score": 77.1900000000
   },
   {
-    "file": "article.md",
-    "words": 145,
+    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/article.md",
+    "words": 151,
     "headings": 8,
     "links": 1,
     "reading_time_min": 1,
-    "readability_score": 71.0
+    "readability_score": 69.8000000000
   },
   {
-    "file": "README.md",
-    "words": 334,
+    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/README.md",
+    "words": 366,
     "headings": 13,
     "links": 0,
     "reading_time_min": 2,
-    "readability_score": 77.7
+    "readability_score": 75.6000000000
   },
   {
-    "file": "tutorial.md",
-    "words": 156,
+    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/tutorial.md",
+    "words": 182,
     "headings": 11,
     "links": 3,
     "reading_time_min": 1,
-    "readability_score": 76.0
+    "readability_score": 72.0000000000
   },
   {
-    "file": "notes.md",
-    "words": 70,
+    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/notes.md",
+    "words": 98,
     "headings": 8,
     "links": 6,
     "reading_time_min": 1,
-    "readability_score": 88.3
+    "readability_score": 83.6666666667
   },
   {
-    "file": "test.md",
+    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/test.md",
     "words": 0,
     "headings": 0,
     "links": 0,
     "reading_time_min": 0,
-    "readability_score": 100.0
+    "readability_score": 100.0000000000
   }
 ]

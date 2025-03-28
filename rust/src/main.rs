@@ -5,17 +5,30 @@ use serde_json::to_string_pretty;
 use std::env;
 use std::fs::{create_dir_all, File};
 use std::io::Write;
+use std::path::PathBuf;
 use walkdir::WalkDir;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let input_path = args
+    let mut input_path = args
         .get(1)
-        .expect("❗ Please provide an input path, e.g. './input'");
+        .expect("❗ Please provide an input path, e.g. './input'")
+        .to_string();
+
+    // Gestisci l'opzione -i
+    if input_path == "-i" {
+        input_path = args
+            .get(2)
+            .expect("❗ Please provide a path after -i")
+            .to_string();
+    }
+
+    // Converti in percorso assoluto
+    let abs_path = std::fs::canonicalize(&input_path).expect("❗ Failed to resolve absolute path");
 
     let mut results = Vec::new();
 
-    for entry in WalkDir::new(input_path)
+    for entry in WalkDir::new(&abs_path)
         .into_iter()
         .filter_map(Result::ok)
         .filter(|e| {
@@ -23,12 +36,12 @@ fn main() {
         })
     {
         if let Some(stats) = analyze_markdown_file(entry.path()) {
-            println!("📄 Analyzed: {}", stats.file);
+            println!("File: {}", stats.file);
             println!("────────────────────────────");
-            println!("• Words:            {}", stats.words);
-            println!("• Headings:         {}", stats.headings);
-            println!("• Links:            {}", stats.links);
-            println!("• Reading Time:     {} min", stats.reading_time_min);
+            println!("• Words:           {}", stats.words);
+            println!("• Headings:        {}", stats.headings);
+            println!("• Links:           {}", stats.links);
+            println!("• Reading Time:    {} min", stats.reading_time_min);
             println!("• Readability Score: {:.1}", stats.readability_score);
             println!("────────────────────────────\n");
 

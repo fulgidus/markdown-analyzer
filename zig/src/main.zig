@@ -16,7 +16,7 @@ fn saveStatsToJson(allocator: std.mem.Allocator, stats: []const analyzer.FileSta
         try std.fmt.format(string.writer(), "    \"headings\": {d},\n", .{stat.headings});
         try std.fmt.format(string.writer(), "    \"links\": {d},\n", .{stat.links});
         try std.fmt.format(string.writer(), "    \"reading_time_min\": {d},\n", .{stat.reading_time_min});
-        try std.fmt.format(string.writer(), "    \"readability_score\": {d:.1}\n", .{stat.readability_score});
+        try std.fmt.format(string.writer(), "    \"readability_score\": {d:.10}\n", .{stat.readability_score});
         try string.appendSlice("  }");
     }
     try string.appendSlice("\n]\n");
@@ -57,11 +57,11 @@ fn analyzeDirectory(allocator: std.mem.Allocator, dir: fs.Dir, base_path: []cons
         const full_path = try std.fs.path.join(allocator, &[_][]const u8{ base_path, entry.path });
         defer allocator.free(full_path);
 
-        const stats = try analyzer.analyzeMarkdownFile(allocator, dir, entry.path);
+        const stats = try analyzer.analyzeMarkdownFile(allocator, dir, full_path);
         try stats_list.append(stats);
 
         // Stampa i risultati
-        std.debug.print("\nAnalysis of: {s}\n", .{full_path});
+        std.debug.print("\nAnalysis of: {s}\n", .{stats.file});
         std.debug.print("Words: {d}\n", .{stats.words});
         std.debug.print("Headings: {d}\n", .{stats.headings});
         std.debug.print("Links: {d}\n", .{stats.links});

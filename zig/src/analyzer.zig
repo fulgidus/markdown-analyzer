@@ -5,7 +5,7 @@ const Allocator = std.mem.Allocator;
 const testing = std.testing;
 
 pub const FileStats = struct {
-    file: []const u8,
+    file: []u8,
     words: usize,
     headings: usize,
     links: usize,
@@ -32,19 +32,28 @@ pub fn analyzeMarkdownFile(allocator: Allocator, dir: fs.Dir, path: []const u8) 
 
     const content = buffer[0..file_size];
 
-    // Conteggio parole: ignora la punteggiatura e conta solo le parole effettive
-    var word_count: usize = 0;
-    var in_word = false;
-    for (content) |c| {
-        if (std.ascii.isAlphabetic(c) or std.ascii.isDigit(c) or c == '-' or c == '_') {
-            if (!in_word) {
-                word_count += 1;
-                in_word = true;
+    // Conteggio parole: usa lo stesso algoritmo di Go
+    var words = std.ArrayList([]const u8).init(allocator);
+    defer words.deinit();
+
+    var word_start: ?usize = null;
+    for (content, 0..) |c, i| {
+        if (std.ascii.isAlphabetic(c) or std.ascii.isDigit(c)) {
+            if (word_start == null) {
+                word_start = i;
             }
-        } else if (std.ascii.isWhitespace(c) or c == '.' or c == ',' or c == '!' or c == '?' or c == ':' or c == ';') {
-            in_word = false;
+        } else {
+            if (word_start) |start| {
+                try words.append(content[start..i]);
+                word_start = null;
+            }
         }
     }
+    if (word_start) |start| {
+        try words.append(content[start..]);
+    }
+
+    const word_count = words.items.len;
 
     // Conteggio headings
     var heading_count: usize = 0;
@@ -78,7 +87,7 @@ pub fn analyzeMarkdownFile(allocator: Allocator, dir: fs.Dir, path: []const u8) 
     if (sentence_count == 0) sentence_count = 1;
 
     const avg_words_per_sentence = @as(f64, @floatFromInt(word_count)) / @as(f64, @floatFromInt(sentence_count));
-    const readability = 100 - (avg_words_per_sentence * 2);
+    const readability = 100.0 - (avg_words_per_sentence * 2.0);
 
     // Normalizza il punteggio tra 0 e 100
     const normalized_readability = @max(0.0, @min(100.0, readability));
@@ -91,7 +100,7 @@ pub fn analyzeMarkdownFile(allocator: Allocator, dir: fs.Dir, path: []const u8) 
         .headings = heading_count,
         .links = link_count,
         .reading_time_min = reading_time,
-        .readability_score = @round(normalized_readability * 10.0) / 10.0,
+        .readability_score = normalized_readability,
     };
 }
 
