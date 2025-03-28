@@ -5,7 +5,6 @@ use serde_json::to_string_pretty;
 use std::env;
 use std::fs::{create_dir_all, File};
 use std::io::Write;
-use std::path::PathBuf;
 use walkdir::WalkDir;
 
 fn main() {
@@ -49,11 +48,11 @@ fn main() {
         }
     }
 
-    create_dir_all("../output").expect("Could not create output folder");
-    let mut file = File::create("../output/stats-rust.json").expect("Failed to create JSON file");
+    create_dir_all("output").expect("Could not create output folder");
+    let mut file = File::create("output/stats-rust.json").expect("Failed to create JSON file");
     let json = to_string_pretty(&results).expect("Failed to serialize JSON");
     file.write_all(json.as_bytes())
         .expect("Failed to write JSON");
 
-    println!("✅ Analysis complete. Results saved to output/stats.json");
+    println!("✅ Analysis complete. Results saved to output/stats-rust.json");
 }

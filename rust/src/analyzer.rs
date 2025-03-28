@@ -1,4 +1,3 @@
-use regex::Regex;
 use serde::Serialize;
 use std::fs;
 use std::path::Path;

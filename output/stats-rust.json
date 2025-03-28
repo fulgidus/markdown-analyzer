@@ -16,14 +16,6 @@
     "readability_score": 69.8
   },
   {
-    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/README.md",
-    "words": 367,
-    "headings": 13,
-    "links": 0,
-    "reading_time_min": 2,
-    "readability_score": 75.53333333333333
-  },
-  {
     "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/tutorial.md",
     "words": 182,
     "headings": 11,

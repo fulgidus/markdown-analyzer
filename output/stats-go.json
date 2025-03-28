@@ -1,13 +1,5 @@
 [
   {
-    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/README.md",
-    "words": 367,
-    "headings": 13,
-    "links": 0,
-    "reading_time_min": 2,
-    "readability_score": 76.3225806451613
-  },
-  {
     "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/article.md",
     "words": 151,
     "headings": 8,

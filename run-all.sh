@@ -1,28 +1,26 @@
 #!/bin/bash
 
+# Ottieni il percorso assoluto della directory corrente
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 echo "Executing markdown analyzer in all its versions..."
 echo "----------------------------------------"
 
-# Ottieni il percorso assoluto della directory corrente
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEST_FILES="$ROOT_DIR/input"
-
 # Esegui la versione Rust
 echo "Executing Rust version..."
-cd "$ROOT_DIR/rust" && cargo run -- -i "$TEST_FILES" || exit 1
-cd "$ROOT_DIR"
+cd rust && cargo build && cd ..
+rust/target/debug/markdown_analyzer -i "$(pwd)/input"
 echo "----------------------------------------"
 
 # Esegui la versione Zig
 echo "Executing Zig version..."
-cd "$ROOT_DIR/zig" && zig build run -- -i "$TEST_FILES" || exit 1
-cd "$ROOT_DIR"
+cd zig && zig build && cd ..
+zig/zig-out/bin/markdown-analyzer -i "$(pwd)/input"
 echo "----------------------------------------"
 
 # Esegui la versione Go
 echo "Executing Go version..."
-cd "$ROOT_DIR/go" && go build -o markdown-analyzer && ./markdown-analyzer -input "$TEST_FILES" || exit 1
-cd "$ROOT_DIR"
+cd go && go run main.go -input "$(pwd)/../input"
 echo "----------------------------------------"
 
 echo "All programs have been executed successfully!"
@@ -31,14 +29,6 @@ echo "- output/stats-rust.json"
 echo "- output/stats-zig.json"
 echo "- output/stats-go.json"
 
-# Optionally, show differences between files
 echo -e "\nComparing results..."
 echo "----------------------------------------"
-echo "Differences between Rust and Go:"
-diff output/stats-rust.json output/stats-go.json || true
-echo "----------------------------------------"
-echo "Differences between Zig and Go:"
-diff output/stats-zig.json output/stats-go.json || true
-echo "----------------------------------------"
-echo "Differences between Rust and Zig:"
-diff output/stats-rust.json output/stats-zig.json || true
+cd "$ROOT_DIR" && python3 compare_results.py
