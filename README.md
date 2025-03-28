@@ -15,6 +15,25 @@ It scans one or more Markdown files—or entire directories—and extracts usefu
 
 ---
 
+## 📋 Prerequisites
+
+Before running any version of the analyzer, ensure you have the following installed:
+
+- Python 3.x (for running tests and scripts)
+- Rust (latest stable version)
+- Go (latest stable version)
+- Zig (latest stable version)
+
+You can verify your installations with:
+```bash
+python3 --version
+rustc --version
+go version
+zig version
+```
+
+---
+
 ## 💡 Features
 
 - ✅ Analyze individual `.md` files or full directory trees
@@ -75,21 +94,39 @@ markdown-analyzer/
 ```
 
 ## 🚀 How to Run
-### 🦀 Rust
+
+### 🛠️ Using Scripts
+
+The project includes several convenience scripts:
+
+```bash
+# Run all implementations sequentially
+./run-all.sh input/
+
+# Run all tests
+./run-tests.sh
+
+# Run a specific implementation
+./run-rust.sh input/
+./run-go.sh input/
+./run-zig.sh input/
+```
+
+### 🔧 Manual Execution
+
+#### 🦀 Rust
 ```bash
 cd rust
 cargo run -- ../input
 ```
 
-### ⚙️ Go
-
+#### ⚙️ Go
 ```bash
 cd go
 go run main.go ../input
 ```
 
-### ⚡ Zig
-
+#### ⚡ Zig
 ```bash
 cd zig
 zig run main.zig -- ../input
@@ -105,7 +142,8 @@ This project is an opportunity to explore how different programming languages:
 - Deal with performance, safety, and ergonomics
 
 Each version does the same thing, but the implementation varies.  
-That’s the point — to compare and learn from the differences.
+That's the point — to compare and learn from the differences.
+
 ## 📚 Learning Goals
 
 - Write idiomatic code in Rust, Go, and Zig

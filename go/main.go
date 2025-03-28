@@ -152,7 +152,7 @@ func main() {
 	// Salva i risultati in JSON
 	jsonData, err := json.MarshalIndent(stats, "", "  ")
 	if err != nil {
-		fmt.Printf("Errore durante la generazione del JSON: %v\n", err)
+		fmt.Printf("Error during JSON generation: %v\n", err)
 		os.Exit(1)
 	}
 
@@ -161,9 +161,9 @@ func main() {
 
 	err = ioutil.WriteFile("../output/stats-go.json", jsonData, 0644)
 	if err != nil {
-		fmt.Printf("Errore durante il salvataggio del file JSON: %v\n", err)
+		fmt.Printf("Error during JSON file saving: %v\n", err)
 		os.Exit(1)
 	}
 
-	fmt.Println("Risultati salvati in: ../output/stats-go.json")
+	fmt.Println("Results saved in: ../output/stats-go.json")
 } 

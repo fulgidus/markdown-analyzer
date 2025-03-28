@@ -87,14 +87,14 @@ pub fn main() !void {
 
     // Leggi il percorso da analizzare
     var path = args.next() orelse {
-        std.debug.print("Uso: markdown-analyzer <directory o file.md>\n", .{});
+        std.debug.print("Usage: markdown-analyzer <directory or file.md>\n", .{});
         std.process.exit(1);
     };
 
     // Gestisci l'opzione -i
     if (std.mem.eql(u8, path, "-i")) {
         path = args.next() orelse {
-            std.debug.print("Errore: nessun percorso specificato dopo -i\n", .{});
+            std.debug.print("Error: no path specified after -i\n", .{});
             std.process.exit(1);
         };
     }
@@ -116,17 +116,17 @@ pub fn main() !void {
         var stats = try analyzer.analyzeMarkdownFile(allocator, fs.cwd(), abs_path);
         defer stats.deinit(allocator);
 
-        std.debug.print("\nAnalisi di: {s}\n", .{abs_path});
-        std.debug.print("Parole: {d}\n", .{stats.words});
-        std.debug.print("Titoli: {d}\n", .{stats.headings});
-        std.debug.print("Link: {d}\n", .{stats.links});
-        std.debug.print("Tempo di lettura stimato: {d} minuti\n", .{stats.reading_time_min});
-        std.debug.print("Punteggio di leggibilità: {d:.1}\n", .{stats.readability_score});
+        std.debug.print("\nAnalysis of: {s}\n", .{abs_path});
+        std.debug.print("Words: {d}\n", .{stats.words});
+        std.debug.print("Headings: {d}\n", .{stats.headings});
+        std.debug.print("Links: {d}\n", .{stats.links});
+        std.debug.print("Estimated reading time: {d} minutes\n", .{stats.reading_time_min});
+        std.debug.print("Readability score: {d:.1}\n", .{stats.readability_score});
 
         // Salva i risultati in JSON
         const stats_array = [_]analyzer.FileStats{stats};
         try saveStatsToJson(allocator, &stats_array);
     }
 
-    std.debug.print("\nRisultati salvati in: output/stats-zig.json\n", .{});
+    std.debug.print("\nResults saved in: output/stats-zig.json\n", .{});
 }

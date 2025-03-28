@@ -1,6 +1,6 @@
 [
   {
-    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/comparison.md",
+    "file": "../input/comparison.md",
     "words": 2281,
     "headings": 48,
     "links": 8,
@@ -8,7 +8,7 @@
     "readability_score": 77.1900000000
   },
   {
-    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/article.md",
+    "file": "../input/article.md",
     "words": 151,
     "headings": 8,
     "links": 1,
@@ -16,7 +16,7 @@
     "readability_score": 69.8000000000
   },
   {
-    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/tutorial.md",
+    "file": "../input/tutorial.md",
     "words": 182,
     "headings": 11,
     "links": 3,
@@ -24,7 +24,7 @@
     "readability_score": 72.0000000000
   },
   {
-    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/notes.md",
+    "file": "../input/notes.md",
     "words": 98,
     "headings": 8,
     "links": 6,
@@ -32,7 +32,7 @@
     "readability_score": 83.6666666667
   },
   {
-    "file": "/Users/ac.qcs/Documents/Projects/Rust/markdown-analyzer/input/test.md",
+    "file": "../input/test.md",
     "words": 0,
     "headings": 0,
     "links": 0,
