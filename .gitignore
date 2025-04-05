@@ -42,5 +42,5 @@ zig-out/
 *.meta
 *.dSYM/
 
-input/*
-*input*
+/input/*
+/output/*
