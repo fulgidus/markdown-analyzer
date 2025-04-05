@@ -41,3 +41,6 @@ zig-out/
 *.ilk
 *.meta
 *.dSYM/
+
+input/*
+*input*

@@ -1,6 +1,5 @@
 mod analyzer;
 
-use analyzer::FileStats;
 use crossbeam::channel::unbounded;
 use std::env;
 use std::fs::{ create_dir_all, File };
@@ -76,5 +75,5 @@ fn main() {
 
     file.write_all(json.as_bytes()).expect("Failed to write JSON file");
 
-    println!("✅ Analysis complete! Results saved to output/stats.json");
+    println!("✅ Analysis complete! Results saved to output/stats-rust.json");
 }

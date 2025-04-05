@@ -16,7 +16,7 @@ cd ..
 
 echo "⚙️ Benchmarking Zig..."
 cd zig
-time zig run main.zig -- ../input > ../output/zig.txt
+time zig run src/main.zig -- ../input > ../output/zig.txt
 cd ..
 
 echo "✅ Benchmark complete! See output/*.txt"
